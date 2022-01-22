@@ -1,27 +1,32 @@
-const links = document.querySelectorAll('.header-menu__item a')
-const link = document.querySelector('.card-details__link-characteristics')
+const scrollFunc = () => {
+  const links = document.querySelectorAll('.header-menu__item a')
+  const link = document.querySelector('.card-details__link-characteristics')
 
-seamless.polyfill()
+  const newArray = [...links, link]
 
-links.forEach((element) => {
-  element.addEventListener('click', (e) => {
-    e.preventDefault()
+  seamless.polyfill()
 
-    const id = element.getAttribute('href').substring(1)
-    const section = document.getElementById(id)
+  newArray.forEach((element) => {
+    element.addEventListener('click', (e) => {
+      e.preventDefault()
 
-    if (section) {
-      seamless.elementScrollIntoView(section, {
-        behavior: 'smooth',
-        block: 'start'
-      })
-    } else {
-      seamless.elementScrollIntoView(document.querySelector("#characteristics"), {
-        behavior: "smooth",
-        block: "center",
-        inline: "center",
-      });
-    }
+      const id = element.getAttribute('href').substring(1)
+      const section = document.getElementById(id)
+
+      if (section) {
+        seamless.elementScrollIntoView(section, {
+          behavior: 'smooth',
+          block: 'start'
+        })
+      } else {
+        seamless.elementScrollIntoView(document.querySelector("#characteristics"), {
+          behavior: "smooth",
+          block: "center",
+          inline: "center",
+        });
+      }
+    })
   })
-})
+}
 
+scrollFunc()
